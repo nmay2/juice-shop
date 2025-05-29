@@ -1,0 +1,41 @@
+name: Fortify on Demand Scan
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  fortify-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Package source code
+        run: |
+          mkdir -p sc-package
+          zip -r sc-package/package.zip . -x '*.git*'
+          
+          steps:    
+      - name: Check out source code
+        uses: actions/checkout@v4  
+      - name: Run Fortify on Demand SAST & SCA Scan
+        uses: fortify/github-action@v1
+        with:
+          sast-scan: true
+          debricked-sca-scan: true
+        env:
+          FOD_URL: https://ams.fortify.com
+          FOD_TENANT: 'tam_team_test'
+          FOD_USER: 'nmaytest'
+          FOD_PASSWORD: 'N@tband1t123'
+
