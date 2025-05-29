@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Use committed ZIP file
         run: |
           mkdir -p sc-package
@@ -26,4 +29,4 @@ jobs:
           FOD_TENANT: tam_team_test
           FOD_USER: nmaytest
           FOD_PASSWORD: Mk9FMydhRjNEVXBtZ1I1SHBhIlRkeio3UEhTWHdh0
-          FOD_RELEASE: NathanNewApp:DebrickedTest2
+          FOD_RELEASE: NathanNewApp:DebrickedTest
