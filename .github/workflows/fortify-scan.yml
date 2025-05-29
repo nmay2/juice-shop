@@ -20,10 +20,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Package source code
+      - name: Use committed zip file
         run: |
           mkdir -p sc-package
-          zip -r sc-package/package.zip . -x '*.git*'
+          cp FortifyTestPayload/JavaVulnerableLab-master.zip sc-package/sc-package.zip
 
       - name: Run Fortify on Demand SAST & SCA Scan
         uses: fortify/github-action@v1.6.3
