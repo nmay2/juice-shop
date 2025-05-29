@@ -11,19 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Use committed zip file
+      - name: Use committed ZIP file
         run: |
           mkdir -p sc-package
-          cp FortifyTestPayload/JavaVulnerableLab-master.zip sc-package/sc-package.zip
+          cp FortifyTestPayload/JavaVulnerableLab-master.zip sc-package/package.zip
 
       - name: Run Fortify on Demand SAST & SCA Scan
         uses: fortify/github-action@v1.6.3
@@ -35,5 +26,4 @@ jobs:
           FOD_TENANT: tam_team_test
           FOD_USER: nmaytest
           FOD_PASSWORD: Mk9FMydhRjNEVXBtZ1I1SHBhIlRkeio3UEhTWHdh0
-          FOD_RELEASE: NathanNewApp:DebrickedTest
-
+          FOD_RELEASE: NathanNewApp:DebrickedTest2
